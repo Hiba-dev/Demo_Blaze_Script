@@ -1,8 +1,5 @@
 package main;
 
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -14,13 +11,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class store_class {
 	
 	public void checkout() throws InterruptedException {
-		System.setProperty("WebDriver.edge.driver", "C:\\Users\\DELL\\Downloads\\edgedriver_win64\\msedgedriver.exe");
-		WebDriver driver = new EdgeDriver();
+		System.setProperty("WebDriver.edge.driver", "C:\\Users\\hiba.ahmed\\Downloads\\geckodriver-v0.33.0\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
 		driver.get("https://www.demoblaze.com/");	
 		driver.manage().window().maximize();
 		
@@ -39,10 +35,7 @@ public class store_class {
        WebElement signinbtn = driver.findElement(By.xpath("//button[@onclick='register()']"));
        signinbtn.click();
        
-      //Wait for the alert to appear
-       WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
-       w.until(ExpectedConditions.alertIsPresent());
-
+       Thread.sleep(2000);
        
       //Switch to the alert
        Alert alert = driver.switchTo().alert();
@@ -53,14 +46,18 @@ public class store_class {
      //Accept the alert (clicking OK)
        alert.accept();
        
+       Thread.sleep(1000);
+       
        WebElement closebtn = driver.findElement(By.xpath("//*[@id=\"signInModal\"]/div/div/div[3]/button[1]"));
        closebtn.click();
        
+       Thread.sleep(2000);
+       
        /////LOGIN/////
-       WebElement login = driver.findElement(By.id("login2"));
+       WebElement login = driver.findElement(By.xpath("//a[@id='login2']"));
        login.click();
        
-       Thread.sleep(2000);
+       Thread.sleep(1000);
        
        WebElement usernamee = driver.findElement(By.id("loginusername"));
        usernamee.sendKeys("hiba33094");
@@ -71,21 +68,32 @@ public class store_class {
        WebElement loginbtn = driver.findElement(By.xpath("//button[@onclick='logIn()']"));
        loginbtn.click();
        
-     //Wait for the alert to appear
-       WebDriverWait d=new WebDriverWait(driver, Duration.ofSeconds(40));
-       w.until(ExpectedConditions.alertIsPresent());
-
+       Thread.sleep(2000);  
        
       //Switch to the alert
        Alert alertt = driver.switchTo().alert();
        
       //Get the text from the alert
        String alerttText = alert.getText();
+      
        
      //Accept the alert (clicking OK)
        alertt.accept();
        
-       WebElement product = driver.findElement(By.xpath("//*[@id=\"tbodyid\"]/div[1]/div/div/h4/a"));
-       product.click();
+       driver.findElement(By.xpath("//body/div[@id='logInModal']/div[1]/div[1]/div[3]/button[1]"));
+      
+       Thread.sleep(1000);
+       
+       driver.findElement(By.xpath("//a[@id='cartur']")).click();
+       
+       /*
+       
+       WebElement category = driver.findElement(By.xpath("//a[contains(text(),'Laptops')]"));
+       category.click();
+       
+       Thread.sleep(1000);
+       
+       WebElement products = driver.findElement(By.xpath("//body/div[@id='contcont']/div[1]/div[2]/div[1]/div[2]/div[1]/a[1]"));
+       products.click(); */
 }
 }
